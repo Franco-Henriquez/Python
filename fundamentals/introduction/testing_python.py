@@ -194,24 +194,45 @@
 
 
 #EXAMPLE OF BREAKS
-y = 3
-while y > 0:
-    print(y)
-    y = y - 1
-    #so you would think that while y is above 0, it will keep looping, except the loop is broken while it's running y = 1
-    # reason for this is because after it print(y) it also does y = y - 1
-    # so before it gets a chance to loop again, the if statement stops it because now y is equal to 0
-    # so it never gets a chance to loop one last time just to trigger the else statement from while
-    if y == 0:
-        break
-else:		# only executes on a clean exit from the while loop (i.e. not a break)
-    print("Final else statement")
-# output: 3, 2, 1
+# y = 3
+# while y > 0:
+#     print(y)
+#     y = y - 1
+#     #so you would think that while y is above 0, it will keep looping, except the loop is broken while it's running y = 1
+#     # reason for this is because after it print(y) it also does y = y - 1
+#     # so before it gets a chance to loop again, the if statement stops it because now y is equal to 0
+#     # so it never gets a chance to loop one last time just to trigger the else statement from while
+#     if y == 0:
+#         break
+# else:		# only executes on a clean exit from the while loop (i.e. not a break)
+#     print("Final else statement")
+# # output: 3, 2, 1
 
-#EXAMPLE OF CONTINUES
-for val in "string":
-    if val == "i":
-        continue
-    print(val)
-# output: s, t, r, n, g
-# notice, no i in the output, but the loop continued after the i
+# #EXAMPLE OF CONTINUES
+# for val in "string":
+#     if val == "i":
+#         continue
+#     print(val)
+# # output: s, t, r, n, g
+# # notice, no i in the output, but the loop continued after the i
+
+
+# def full_name(first,last):
+#     fullname = first +" "+ last
+#     return fullname
+
+# name1 = full_name("Eddie", "Aikau")
+# print(name1) # should print Eddie Aikau
+
+
+# set defaults when declaring the parameters
+# def be_cheerful(name='', repeat=2):
+# 	print(f"good morning {name}\n" * repeat)
+# be_cheerful()# output: good morning (repeated on 2 lines)
+# be_cheerful("tim")# output: good morning tim (repeated on 2 lines)
+# be_cheerful(name="john")# output: good morning john (repeated on 2 lines)
+# be_cheerful(repeat=6)# output: good morning (repeated on 6 lines)
+# be_cheerful(name="michael", repeat=5)# output: good morning michael (repeated on 5 lines)
+# # note: argument order doesn't matter if we are explicit when sending in our arguments!
+# be_cheerful(repeat=3, name="kb")# output: good morning kb (repeated on 3 lines)
+
