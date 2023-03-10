@@ -128,11 +128,90 @@
 #     print("Final else statement")
 
 
-num_list = ["oranges", "apples", "grapes", "bananas","celery"] 
+# TO DO
+#fix this so that it returns the changed result of num_list
+# num_list = ["oranges", "apples", "grapes", "bananas","celery"] 
 
-def replace(a,b):
-    indexOfA = num_list.index(a) 
-    num_list[indexOfA] = b
-    return "Complete"
+# def replace(a,b):
+#     indexOfA = num_list.index(a) 
+#     num_list[indexOfA] = b
+#     return "Complete"
 
-replace("celery","Pineapple")
+# replace("celery","Pineapple")
+
+#LOOPS OVER LISTS
+# my_list = ["abc",123,"xyz"]
+# for integer in range(0, len(my_list)):
+#     #reason we tell the range to start at 0 is because lists indexes always start with 0
+#     #this line provides the index number followed by whats in content inside that position.
+#     print(integer, my_list[integer])
+#     # output:
+#     # 0 abc
+#     # 1 123
+#     # 2 xyz
+
+# # this is an easy way to loop through a list, the for loop basically again even though we dont' tell it to start anywhere,
+# # it knows that a list starts at index 0, so it just loops until the end of the index.
+# # our index has 3 indexes
+# #    0    1    2
+# # ["abc",123,"xyz"]
+# for i in my_list:
+#     print(i)
+#     #output:
+#     # abc
+#     # 123
+#     # xyz
+
+
+# another example like the one above
+# countries = ["Uganda", "Chile", "Albania", "Saudi Arabia"]
+# # Challenge 1: Fix the range!
+# for integer in range(0, len(countries)):
+#     print("Index:",integer)
+#     # Challenge 2: print the index here
+#     print("Country:",countries[integer])
+#     # Challenge 3: print the country here
+
+# # Looping over values only...
+# for country in countries:
+#     print("Country: ", country)
+#     # Challenge 4: print the country here
+
+# y = 3
+# while y > 0:
+#     print(y)
+#     y -= 1
+# else:
+#     print("Final else statement")
+
+# x = 0
+# while x < 6:
+#     print(x)
+#     x += 1
+# else:
+#     print("Final else statement")
+
+
+
+#EXAMPLE OF BREAKS
+y = 3
+while y > 0:
+    print(y)
+    y = y - 1
+    #so you would think that while y is above 0, it will keep looping, except the loop is broken while it's running y = 1
+    # reason for this is because after it print(y) it also does y = y - 1
+    # so before it gets a chance to loop again, the if statement stops it because now y is equal to 0
+    # so it never gets a chance to loop one last time just to trigger the else statement from while
+    if y == 0:
+        break
+else:		# only executes on a clean exit from the while loop (i.e. not a break)
+    print("Final else statement")
+# output: 3, 2, 1
+
+#EXAMPLE OF CONTINUES
+for val in "string":
+    if val == "i":
+        continue
+    print(val)
+# output: s, t, r, n, g
+# notice, no i in the output, but the loop continued after the i
