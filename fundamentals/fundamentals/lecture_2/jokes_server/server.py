@@ -1,8 +1,12 @@
 # the 'from' command? only works when its python files you want to import are
 # inside a folder called __pycache__
 # I don't know why yet
-from assets.jokes import jokes_list
-from assets.quotes import quotes_list
+# from assets.jokes import jokes_list
+# from assets.quotes import quotes_list
+
+# will use a combined quotes and jokes file with separate lists
+from assets.jokes_and_quotes import jokes_list 
+from assets.jokes_and_quotes import quotes_list
 import time
 import random
 
@@ -63,8 +67,20 @@ def jokesNquotes():
     else:
         print("I did not understand.")
 
-jokesNquotes()
+# jokesNquotes()
 
 # to do:
 # fix the quote and joke functions so that the bot sounds less bot-like
 # may need to add additional if statements
+
+
+# Notes:
+# so quotes and jokes file have 2 lists
+# one is called jokes_list
+# the other is called quotes_list
+# a list is an array and we access them with:
+print(quotes_list[0])
+# within each index of quotes_list, is a dictionary (object sort of)
+# an object that contains two keys: text and author
+# so to access a specific author from a specific array/list index # for example:
+print(quotes_list[0]["author"])

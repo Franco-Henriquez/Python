@@ -225,7 +225,7 @@
 # print(name1) # should print Eddie Aikau
 
 
-# set defaults when declaring the parameters
+# # set defaults when declaring the parameters
 # def be_cheerful(name='', repeat=2):
 # 	print(f"good morning {name}\n" * repeat)
 # be_cheerful()# output: good morning (repeated on 2 lines)
@@ -235,4 +235,34 @@
 # be_cheerful(name="michael", repeat=5)# output: good morning michael (repeated on 5 lines)
 # # note: argument order doesn't matter if we are explicit when sending in our arguments!
 # be_cheerful(repeat=3, name="kb")# output: good morning kb (repeated on 3 lines)
+
+# #saving value to a dictionary
+# #literal notation
+# person = {"first": "Ada", "last": "Lovelace", "age": 42, "is_organ_donor": True}
+# capitals = {} #create an empty dictionary then add values
+# capitals["svk"] = "Bratislava"
+# capitals["deu"] = "Berlin"
+# capitals["dnk"] = "Copenhagen"
+
+# #this works the same way when trying to edit 
+# person["first"] = "Nada"
+
+# # for each_key in person:
+# #     print(each_key, person[each_key])
+
+# capitals = {"Washington":"Olympia","California":"Sacramento","Idaho":"Boise","Illinois":"Springfield","Texas":"Austin","Oklahoma":"Oklahoma City","Virginia":"Richmond"}
+# # another way to iterate through the keys
+# for key in capitals.keys():
+#     print(key)
+# # output: Washington, California, Idaho, Illinois, Texas, Oklahoma, Virginia
+# #to iterate through the values
+# for val in capitals.values():
+#     print(val)
+# # output: Olympia, Sacramento, Boise, Springfield, Austin, Oklahoma City, Richmond
+# #to iterate through both keys and values
+# for key, val in capitals.items():
+#     print(key, " = ", val)
+# # output: Washington = Olympia, California = Sacramento, Idaho = Boise, etc
+
+
 
