@@ -39,13 +39,14 @@ students = [
 # first_name - Mark, last_name - Guillen
 # first_name - KB, last_name - Tonel
 
+#                     students_list is the parameter
 def iterateDictionary(students_list):
     for dictionary in students_list:
         first_and_last_name = ""
         for key, value in dictionary.items():
             first_and_last_name += f"{key} - {value}, "
         print(first_and_last_name[:-2])
-
+#                 students is the argument
 iterateDictionary(students)
 
 #GET VALUES IN A LIST
