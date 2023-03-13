@@ -150,6 +150,7 @@
 #     # 1 123
 #     # 2 xyz
 
+# LOOPS OVER LISTS SHORTHAND - FOR LOOP BUILTIN FUNCTIONALITY WITH LISTS/ARRAYS
 # # this is an easy way to loop through a list, the for loop basically again even though we dont' tell it to start anywhere,
 # # it knows that a list starts at index 0, so it just loops until the end of the index.
 # # our index has 3 indexes
@@ -247,6 +248,8 @@
 # #this works the same way when trying to edit 
 # person["first"] = "Nada"
 
+
+
 # # for each_key in person:
 # #     print(each_key, person[each_key])
 
@@ -266,3 +269,42 @@
 
 
 
+re_persons = [
+        {'first': 'Ada', 'last': 'Wong', 'age': 39, 'diseased': False},
+        {'first': 'Chris', 'last': 'Redfield', 'age': 48, 'diseased': False},
+        {'first': 'Leon', 'last': 'Kennedy', 'age': 46},
+        {'first': 'Piers', 'last': 'Nivans', 'age': 26, 'diseased': True},
+    ]
+#.get(key) is a safe way to get a key's value. Returns "None" if that key does not exist.
+#                             .get(key) of "diseased" from the 3rd dictionary in list re_persons
+leon_diseased = re_persons[2].get("diseased")
+print(f"Getting diseased status of {re_persons[2]['first']}: {leon_diseased}")
+
+
+
+
+
+# for person in re_persons:
+#     # learning to use the logical operator "not in" for dictionaries/objects
+# #   if  some_key  not in my_dictionary:
+#     if "diseased" not in person:
+#         # update the value to null
+#         person["diseased"] = None
+#         print("Setting {}'s diseased status to: {}".format(person["first"],person["diseased"]))
+#     else:
+#         # print("{}'s diseased status is: {}".format(person["first"],person["diseased"]))
+#         pass
+#     dict_x = person
+#     print(f"Regular Format: {dict_x}")
+#     print("String Format: "+str(dict_x))
+
+# simplified version of the above code using setdefault
+for person in re_persons:
+    # The setdefault() method returns the value of the item with the specified key.
+    # If the key does not exist, insert the key, with the specified value
+    is_diseased = person.setdefault("diseased", None)
+    print(person)
+    print(is_diseased)
+
+
+# print(re_persons)
