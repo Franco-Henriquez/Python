@@ -17,18 +17,20 @@ class User:
         print(f"Rewards Member: {self.is_rewards_member}")
         print(f"Points: {self.gold_card_points}")
         print("--------------------------")
+        return self
         # for user in self:
         #     print(self.user.first_name)
     
     def enroll(self):
         if (self.is_rewards_member):
             print(f"{self.first_name} {self.last_name} is already a member.")
-            return False
+            return self
         elif not (self.is_rewards_member):
             self.is_rewards_member = True
             self.gold_card_points = 200
             print(f"{self.first_name} is now a rewards member with {self.gold_card_points} points")
-            return True
+            return self
+        return self
 
 
     def spend_points(self, amount):
@@ -37,6 +39,7 @@ class User:
             print(f"{self.first_name}'s rewards points decreased by {amount}, total points remaining: {self.gold_card_points}")
         else:
             print(f"{self.first_name} does not have enough points. Total points remaining: {self.gold_card_points}")
+        return self
 
 
 
@@ -91,13 +94,18 @@ user_une = User("Ada", "Wong", "ada.wong@umbrella.com", 39)
 user_deux = User("Chris", "Redfield", "chris.redfield@bssa.org", 48)
 user_une.is_rewards_member = True
 
-user_une.spend_points(50)
-user_deux.enroll()
-user_deux.spend_points(80)
-user_une.display_info()
+# user_une.spend_points(50)
+# user_deux.enroll()
+# user_deux.spend_points(80)
+# user_une.display_info()
+# user_deux.display_info()
+
+
+
+
+#example of method chaining
+#only works when "return self" is set to the method
+user_une.display_info().enroll().spend_points(50).display_info()
+
+#traditional method calling
 user_deux.display_info()
-
-
-
-
-
