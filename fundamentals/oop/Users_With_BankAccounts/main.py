@@ -13,16 +13,15 @@ class BankAccount:
         self.user = user
         self.int_rate = int_rate
         self.balance = balance
-        BankAccount.bank_name()
+        # self.bank_name()
         BankAccount.all_accounts.append(self)
         #defaults
         self.account_id += 1
 
-    @classmethod
-    def bank_name(cls):
-        cls.bank_name = BankAccount.bank_name
+    # def bank_name(self, passed_bank_name):
+    #     BankAccount.bank_name = passed_bank_name
+    #     return self.bank_name
 
-        
     def deposit(self, amount):
         # your code here
         self.balance += amount
@@ -38,21 +37,6 @@ class BankAccount:
             print("Not enough cash, strangar!")
             print("You will now be charged a $5 for your inconvenience.")
             self.balance -= 5
-            print(f"Current Balance: ${self.balance}")
-            print("And an additional $5 for processing.")
-            self.balance -= 5
-            print(f"Current Balance: ${self.balance}")
-            if self.balance + 10 <= -1:
-                print("You account is negative, you will be charged an additional $10 as per policy agreement")
-                self.balance -= 10
-                print(f"Current Balance: {self.balance}")
-                print("Any future transgressions while your account is negative, will result in an additional $30 account-upkeeping fee")
-                if self.balance + 20 <= -5:
-                # delinquent
-                    print("Due to your account balance being already negative at the time of withdrawal, you will be charged a $30 account-upkeeping fee.")
-                    self.balance -= 30
-                    print("Heh heh heh... Thank you!")
-                    print(f"Current Balance: {self.balance}")
         return self
                 
     def display_account_info(self):
@@ -84,23 +68,50 @@ class BankAccount:
             # for key, value in account.items():
             #                 print(f"{key}: {value}")
 
-# Creating Accounts
+
+class User:
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+        # self.account = BankAccount(user=self.name,int_rate=0.02, balance=0)
+        self.accounts = {}
+        self.account_type = "Checking"
+    
+    # other methods
+    def make_new_account_type(self, int_rate=0.02, balance=0, account_type="Checking"):
+        new_account_type = BankAccount(self.name, int_rate, balance)
+        self.accounts[account_type] = new_account_type
+    
+    def make_deposit(self, amount, account_type):
+        # your code here
+        self.accounts[account_type].deposit(amount)
+
+        
+        return self
+    
+    def make_withdrawal(self, amount, account_type):
+        # your code here
+        self.accounts[account_type].withdraw(amount)
+        return self
+    
+    def display_user_balance(self, account_type="Checking"):
+        # your code here
+        current_balance = self.accounts[account_type].balance
+        name = self.accounts[account_type].user
+        print(f"{name} current balance for {account_type} Account: ${current_balance}")
+        return self
+            
+
+
+#creating account using associated User class to BankAccounts class
+AlbertWesker_Account = User("Albert Wesker", "albert_wesker@umbrella.com")
+AlbertWesker_Account.make_new_account_type()
+print(AlbertWesker_Account.email)
+AlbertWesker_Account.make_deposit(80, "Checking").make_withdrawal(60, "Checking").display_user_balance()
+
+
+# Creating Accounts using BankAccounts class
 ChrisRedfield_Account = BankAccount("Chris Redfield",.05, 50)
 AdaWong_Account = BankAccount("Ada Wong",.02, 50)
-# Changing bank for Chris only because he works for US gov
-ChrisRedfield_Account.bank_name = "Bank Americana"
-ChrisRedfield_Account = BankAccount("Chris Redfield",.05, 50)
 
-BankAccount.bank_name = "Unified Umbrella Bank"
-# Testing chaining methods
-ChrisRedfield_Account.deposit(100).deposit(100).deposit(100).withdraw(50).yield_interest().display_account_info()
-AdaWong_Account.deposit(100).deposit(100).withdraw(50).withdraw(50).withdraw(50).withdraw(50).yield_interest().display_account_info()
-
-# Getting all info using a method that iterates through a list of object data (not sure if dict)
 BankAccount.all_info()
-# print(BankAccount.all_accounts[0].balance)
-
-
-
-
-

@@ -1,8 +1,8 @@
 re_persons = [
-        {'first': 'Ada', 'last': 'Wong', 'email': 'ada.wong@umbrella.com', 'age': 39, 'password': 'password123'},
-        {'first': 'Chris', 'last': 'Redfield', 'email': 'chris.redfield@bssa.org', 'age': 48, 'password': 'password123'},
-        {'first': 'Leon', 'last': 'Kennedy', 'email': 'leon_kennedy@usgov.gov', 'age': 46, 'password': 'password123'},
-        {'first': 'Piers', 'last': 'Nivans', 'email': 'piers.nivans@bsaa.gov', 'age': 26, 'password': 'password123'},
+        {'first': 'A', 'last': 'Wong', 'email': 'ada.wong@umbrella.com', 'password': 'password123', 'age': 39},
+        {'first': 'Chris', 'last': 'Redfield', 'email': 'chris.redfield@bssa.org', 'password': 'password123', 'age': 48},
+        {'first': 'Leon', 'last': 'Kennedy', 'email': 'leon_kennedy@usgov.gov', 'password': 'password123', 'age': 46},
+        {'first': 'Piers', 'last': 'Nivans', 'email': 'piers.nivans@bsaa.gov', 'password': 'password123', 'age': 26},
     ]
 
 class User:
@@ -29,6 +29,8 @@ class User:
         #creates an object inside a list for each user
         User.user_id_name_list.append({"id":self.user_id, "Name":f'{self.first_n} {self.last_n}'})
 
+
+
     @classmethod
     def set_user_id(cls):
         cls.user_id += 1
@@ -40,10 +42,9 @@ class User:
         print(f"Email: {self.email}")
         print(f"Password: {self.password}")
         return self
-    
+
     @classmethod
     def all_info(cls):
-
         # we use cls to refer to the class
         for account in cls.user_accounts:
             acc = account
@@ -53,25 +54,41 @@ class User:
             print("##################################")
             print(f"Age: {acc.age}")
             print(f"Email: {acc.email}")
-            print(f"Account ID: {acc.account_id}")
+            print(f"Account ID: {acc.user_id}")
             print(f"Password: {acc.password}")
 
-i = 0
+    @staticmethod
+    def is_valid(first_n,last_n,email,password,age):
+        if len(first_n) < 3:
+            return False
+        if len(last_n) < 3:
+            return False
+        if len(email) < 10:
+            return False
+        if len(password) < 3:
+            return False
+        if age < 18:
+            return False
+        return True
+
 for user in re_persons:
-    temp_user = User(user)
+    # User.is_valid("A","test","somebig@email.com","somebigpass",41)
+    if User.is_valid(user["first"], user["last"], user["email"], user["password"], user["age"]):
+        temp_user = User(user)
+        print("Added user")
+    else:
+        print("Invalid User")
 
-    i += 1
-
-
-chrisredfield = User(re_persons[1])
-chrisredfield.user_info().user_info()
+# DEBUG INFO
+# chrisredfield = User(re_persons[1])
+# chrisredfield.user_info().user_info()
 User.all_info()
 
 
-# fetch user list from class
+# WAYS TO FETCH INFO FROM CONTAINERS
+# fetch user list from class list
 for users in User.user_list:
     print(users)
-
 # fetch user and id objects (dictionary entries) from a class list
 for user_idnames in User.user_id_name_list:
     # for key, value in user_idnames.items():
