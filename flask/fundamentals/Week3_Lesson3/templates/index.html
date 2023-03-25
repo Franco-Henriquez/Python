@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<h3>My Flask Template</h3>
+<p>Phrase: {{ phrase }} {{ name }}</p>
+<p>Times: {{ times }}</p>
+
+{% for x in range(0,times): %}
+    <p>{{ phrase }} {{ name }}</p>
+{% endfor %}
+
+{% if phrase == "hello" %}
+    <p>The phrase says hello</p>
+{% endif %}
