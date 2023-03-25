@@ -1,0 +1,16 @@
+h1 {
+    color: danger;
+}
+
+.box {
+    width:100px;
+    height:100px;
+
+}
+
+.container {
+    display: flex;
+    justify-content: start;
+    gap: 40px;
+    flex-flow: row wrap;
+}
