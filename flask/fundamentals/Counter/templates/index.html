@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.scss') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">    <title>HTML Table [Franco]</title>
+</head>
+<body>
+    <h1>Franco's Session Counter</h1>
+    <table class="table table-hover text-center">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Raw Visits Counted</th>
+                <th scope="col">Counter</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ session['visits'] }}</td>
+                <td>{{ session['counter'] }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="container">
+        <div class="row">
+            <form class="col-sm" action='/destroy_session' method='post'>
+                    <input type='submit' value='Reset'>
+            </form>
+            <form class="col-sm" action='/add_one_counter' method='post'>
+                <input type='submit' value='Add 1 To Counter!'>
+            </form>
+            <form class="col-sm" action='/add_two_counter' method='post'>
+                <input type='submit' value='Add 2 To Counter!!'>
+            </form>
+            
+            <form class="col-sm" action='/add_x_counter' method='post'>
+                <!-- force the input to be required when trying to submit -->
+                <!-- instead of using if statements to check for empty int/str -->
+                <input required name="num_of_counter" type="number" alt="Number of Counter to Add">
+                <input type='submit' value='Add To Counter!!'>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

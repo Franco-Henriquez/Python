@@ -12,3 +12,9 @@ flask/fundamentals/Week3_Lesson3_extra/Pipfile
 flask/fundamentals/Week3_Lesson3_extra/Pipfile.lock
 flask/fundamentals/HTML_Table/Pipfile.lock
 flask/fundamentals/HTML_Table/Pipfile
+flask/fundamentals/Counter/Pipfile.lock
+.gitignore
+.gitignore
+flask/fundamentals/Sessions/Pipfile.lock
+flask/fundamentals/Sessions/Pipfile
+flask/fundamentals/Counter/Pipfile
