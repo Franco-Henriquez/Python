@@ -20,3 +20,5 @@ flask/fundamentals/Sessions/Pipfile
 flask/fundamentals/Counter/Pipfile
 flask/fundamentals/Dojo_Survey/Pipfile.lock
 flask/fundamentals/Dojo_Survey/Pipfile
+flask_mysql/crud/Users_CR/Pipfile.lock
+flask_mysql/crud/Users_CR/Pipfile
