@@ -22,3 +22,10 @@ flask/fundamentals/Dojo_Survey/Pipfile.lock
 flask/fundamentals/Dojo_Survey/Pipfile
 flask_mysql/crud/Users_CR/Pipfile.lock
 flask_mysql/crud/Users_CR/Pipfile
+flask_mysql/crud/Dojos_and_Ninjas/Pipfile
+flask_mysql/crud/Dojos_and_Ninjas/Pipfile.lock
+flask_mysql/crud/Users_CRUD/Pipfile
+.gitignore
+flask_mysql/crud/Users_CRUD/Pipfile.lock
+flask_mysql/crud/users_crud_modularization/Pipfile
+flask_mysql/crud/users_crud_modularization/Pipfile.lock
