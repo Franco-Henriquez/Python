@@ -5,8 +5,9 @@ class MySQLConnection:
     def __init__(self, db):
         # change the user and password as needed
         connection = pymysql.connect(host = 'localhost',
-                                    user = 'root', 
-                                    password = 'root', 
+                                    port = 3603,
+                                    user = 'dev_account', 
+                                    password = 'IHateLongPasswords >:|', 
                                     db = db,
                                     charset = 'utf8mb4',
                                     cursorclass = pymysql.cursors.DictCursor,
@@ -19,7 +20,6 @@ class MySQLConnection:
             try:
                 query = cursor.mogrify(query, data)
                 print("Running Query:", query)
-     
                 cursor.execute(query)
                 if query.lower().find("insert") >= 0:
                     # INSERT queries will return the ID NUMBER of the row inserted
@@ -34,7 +34,8 @@ class MySQLConnection:
                     self.connection.commit()
             except Exception as e:
                 # if the query fails the method will return FALSE
-                print("Something went wrong", e)
+                print("QUERY FAILED:", query)
+                print("Something went wrong, SQL ERROR", e)
                 return False
             finally:
                 # close the connection

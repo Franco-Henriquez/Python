@@ -1,5 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 
+from .ninja import Ninja
+
 class Dojo:
     db = 'dojos_and_ninjas_schema'
     def __init__(self,data):
@@ -29,3 +31,24 @@ class Dojo:
         result = connectToMySQL(cls.db).query_db(query,data)
         print(result)
         return result
+
+    @classmethod
+    def remove_dojo(cls,data):
+        query = """
+        INSERT
+        INTO dojos(name,created_at,updated_at)
+        VALUES(%(name)s,NOW(),NOW())
+        """
+        result = connectToMySQL(cls.db).query_db(query,data)
+        print(result)
+        return result
+
+    @classmethod
+    def get_by_id(cls, id):
+        query = "SELECT * FROM dojos WHERE id='%(id)s';"
+        data = {'id':id}
+        dojo_info = []
+        results = connectToMySQL(cls.db).query_db(query,data)
+        dojo_info = cls(results[0])
+        print("This ID:",dojo_info.name)
+        return dojo_info

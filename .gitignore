@@ -29,3 +29,5 @@ flask_mysql/crud/Users_CRUD/Pipfile
 flask_mysql/crud/Users_CRUD/Pipfile.lock
 flask_mysql/crud/users_crud_modularization/Pipfile
 flask_mysql/crud/users_crud_modularization/Pipfile.lock
+mysql/quieries/dojos_and_ninjas/dojos.table.csv
+mysql/quieries/dojos_and_ninjas/ninjas.table.csv
