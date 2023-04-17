@@ -31,3 +31,14 @@ flask_mysql/crud/users_crud_modularization/Pipfile
 flask_mysql/crud/users_crud_modularization/Pipfile.lock
 mysql/quieries/dojos_and_ninjas/dojos.table.csv
 mysql/quieries/dojos_and_ninjas/ninjas.table.csv
+flask_mysql/validation/basic_form_validation/Pipfile.lock
+flask_mysql/validation/basic_form_validation/Pipfile
+flask_mysql/validation/cookie_orders_with_validation/Pipfile
+flask_mysql/validation/cookie_orders_with_validation/Pipfile.lock
+flask_mysql/validation/login_and_registration/Pipfile
+.gitignore
+flask_mysql/validation/login_and_registration/Pipfile.lock
+mysql/erd/Dojos_and_Ninjas/Dojos_and_Ninjas.mwb
+mysql/erd/Dojos_and_Ninjas/Dojos_and_Ninjas.mwb.bak
+mysql/erd/week2_lecture6/user_posts_comments.mwb
+mysql/erd/week2_lecture6/user_posts_comments.mwb.bak
