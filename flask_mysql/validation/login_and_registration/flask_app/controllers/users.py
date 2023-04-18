@@ -8,9 +8,10 @@ bcrypt = Bcrypt(app)
 def index():
     return render_template('index.html')
 
+
+
 @app.route('/register',methods=['POST'])
 def register():
-
     if not User.validate_register(request.form):
         return redirect('/')
     data ={ 
@@ -21,13 +22,12 @@ def register():
     }
     id = User.save(data)
     session['user_id'] = id
-
     return redirect('/dashboard')
+
 
 @app.route('/login',methods=['POST'])
 def login():
     user = User.get_by_email(request.form)
-
     if not user:
         flash("Invalid Email","login")
         return redirect('/')
@@ -37,6 +37,8 @@ def login():
     session['user_id'] = user.id
     return redirect('/dashboard')
 
+
+
 @app.route('/dashboard')
 def dashboard():
     if 'user_id' not in session:
@@ -44,7 +46,10 @@ def dashboard():
     data ={
         'id': session['user_id']
     }
+    print("current user id:",session['user_id'])
     return render_template("dashboard.html",user=User.get_by_id(data))
+
+
 
 @app.route('/logout')
 def logout():
