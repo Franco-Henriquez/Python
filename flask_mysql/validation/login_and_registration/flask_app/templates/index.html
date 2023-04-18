@@ -45,10 +45,13 @@
         </form>
         <form action="/login" method="post" class="col-4 p-4 bg-dark text-light">
             <h2 class="text-success">Login</h2>
+            <!-- set category so that the correct messages are displayed where they belong
+            example from users.py line 32: flash("Invalid Email","login")
+            the category of "login" tells it to show the message within our login form and not the register form
+            -->
             {% with messages = get_flashed_messages(category_filter=['login']) %}
                 {% if messages %}
                 <div class="alert alert-danger" role="alert">
-                    <strong>Flash AHHHHHHH!!!!</strong>
                         {% for message in messages %}
                         <p>{{message}}</p>
                         {% endfor %}
