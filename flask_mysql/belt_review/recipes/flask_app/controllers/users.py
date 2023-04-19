@@ -22,7 +22,7 @@ def register():
     }
     id = User.save(data)
     session['user_id'] = id
-    return redirect('/dashboard')
+    return redirect('/recipes')
 
 
 @app.route('/login',methods=['POST'])
@@ -44,11 +44,6 @@ def login():
     # in order to retrieve user information by that id
     session['user_id'] = user.id
     return redirect('/recipes')
-
-
-
-
-
 
 
 @app.route('/logout')
