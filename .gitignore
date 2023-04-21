@@ -45,3 +45,5 @@ mysql/erd/week2_lecture6/user_posts_comments.mwb.bak
 flask_mysql/belt_review/recipes/flask_app/templates/dashboard.html
 flask_mysql/belt_review/recipes/Pipfile
 flask_mysql/belt_review/recipes/Pipfile.lock
+ajax/ajax_flask/flask_with_ajax/Pipfile
+ajax/ajax_flask/flask_with_ajax/Pipfile.lock

@@ -53,3 +53,4 @@ def add_recipe():
     }
     Recipe.add_recipe(recipe_data)
     return redirect('/recipes')
+
