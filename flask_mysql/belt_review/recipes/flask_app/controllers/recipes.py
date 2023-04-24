@@ -5,6 +5,10 @@ from flask_app.models.recipe import Recipe
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
+
+################
+# VISIBLE ROUTES
+################
 @app.route('/recipes')
 def dashboard():
     if 'user_id' not in session:
@@ -29,6 +33,33 @@ def create_pageview():
     user_data = User.get_by_id(data)
     return render_template("new_recipe.html",user=user_data)
 
+@app.route('/recipes/<int:recipe_id>')
+def view_recipe(recipe_id):
+    #user must be logged in and then pass the user's first_name to the page
+    if 'user_id' not in session:
+        return redirect('/logout')
+    user_id ={
+        'id': session['user_id']
+    }
+    if User.get_by_id(user_id) == False:
+        return redirect('/logout')
+    
+    user_data = User.get_by_id(user_id)
+    # since the user is logged in, let's now grab the recipe id
+    # store in a dictionary
+    recipe_id = {
+        'id': recipe_id
+    }
+    # and fetch recipe data by id
+    recipe_data = Recipe.get_recipe_by_id(recipe_id)
+
+
+    return render_template("view_recipe.html",user_data=user_data,recipe=recipe_data)
+
+
+################
+# HIDDEN ROUTES
+################
 @app.route('/add_recipe', methods=['POST'])
 def add_recipe():
     print("##########################################\n\n")
@@ -52,7 +83,7 @@ def add_recipe():
         "instructions": request.form['instructions'],
         "under_30": request.form['under_30'],
         "date_cooked": request.form['date_cooked'],
-        "posted_by": user_data.first_name,
+        # "posted_by": user_data.first_name,
         "user_id": user_data.id
     }
     Recipe.add_recipe(recipe_data)

@@ -1,4 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask_app.models import user # import user because of the relationship with the recipes table in db
 import re	# the regex module
 # create a regular expression object that we'll use later   
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
@@ -12,27 +13,74 @@ class Recipe:
         self.under = data['under']
         self.description = data['description']
         self.instructions = data['instructions']
-        self.posted_by = data['posted_by']
+        self.date_cooked = data['date_cooked']
         self.user_id = data['user_id']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
 
         # set to none for now - read class associations for this
-        self.owner = []
+        self.owner = None # set an owner when its created
 
     @classmethod
     def get_all(cls):
-        query = "SELECT * FROM recipes;"
+        # join is needed to get combined information from both the recipe
+        # and the corresponding user in the users table
+        query = """
+                SELECT * FROM recipes
+                JOIN users on recipes.user_id = users.id;
+        """
         results = connectToMySQL(cls.db).query_db(query)
         recipes = []
         for recipe in results:
-            recipes.append(cls(recipe))
+            this_recipe = cls(recipe)
+            #build the user data because it's going to be stored in our recipe.owner object
+            user_data = {
+                "id": recipe['user_id'],
+                "first_name": recipe['first_name'],
+                "last_name": recipe['last_name'],
+                "email": recipe['email'],
+                "password": "", #except the password, unsafe to store but so we just leave it blank to keep our data structure
+                "created_at": recipe['created_at'],
+                "updated_at": recipe['updated_at'],
+            }
+            #when this_recipe was created, it's owner key was empty
+            #so now we are passing the user's info who created this recipe 
+            this_recipe.owner = user.User(user_data)
+            # store all the now-combined data (recipe and user) inside of a list accesible from outside our for loop
+            recipes.append(this_recipe)
         return recipes
+    
+    @classmethod
+    def get_recipe_by_id(cls,data):
+        query = """
+                SELECT * FROM recipes
+                JOIN users on recipes.user_id = users.id
+                WHERE recipes.id = %(id)s;
+        """
+        result = connectToMySQL(cls.db).query_db(query,data)
+        # stop if no matching recipe id
+        if not result:
+            return False
+        result = result[0]
+        this_recipe = cls(result)
+        # a recipe belongs to just one user, so no need for a for loop
+        user_data = {
+                "id": result['users.id'],
+                "first_name": result['first_name'],
+                "last_name": result['last_name'],
+                "email": result['email'],
+                "password": "",
+                "created_at": result['users.created_at'],
+                "updated_at": result['users.updated_at']
+        }
+        this_recipe.creator = user.User(user_data)
+        return this_recipe
+    
     @classmethod
     def add_recipe(cls,data):
         query = """
-                INSERT INTO recipes (name,under,description,instructions,posted_by,date_cooked,user_id)
-                VALUES (%(name)s,%(under)s,%(description)s,%(instructions)s,%(posted_by)s,%(date_cooked)s,%(user_id)s)
+                INSERT INTO recipes (name,under,description,instructions,date_cooked,user_id)
+                VALUES (%(name)s,%(under)s,%(description)s,%(instructions)s,%(date_cooked)s,%(user_id)s)
                 """
         return connectToMySQL(cls.db).query_db(query,data)
     
