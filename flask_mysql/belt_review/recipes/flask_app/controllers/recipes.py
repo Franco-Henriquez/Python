@@ -31,6 +31,9 @@ def create_pageview():
 
 @app.route('/add_recipe', methods=['POST'])
 def add_recipe():
+    print("##########################################\n\n")
+    print("this is the request form:", request.form)
+    print("\n\n##########################################")
     if 'user_id' not in session:
         return redirect('/logout')
     if not Recipe.validate_add_recipe(request.form):
@@ -39,6 +42,7 @@ def add_recipe():
         'id': session['user_id']
     }
     #user_data becomes an object method, we would access it using dot notation
+    #use the reltionship with the foreign to pull this data.
     user_data = User.get_by_id(user_id)
     # print("current user id:",session['user_id'])
     # print("USERS INFO:",user_data.first_name)
@@ -46,7 +50,7 @@ def add_recipe():
         "name": request.form['name'],
         "description": request.form['description'],
         "instructions": request.form['instructions'],
-        "under": request.form['under'],
+        "under_30": request.form['under_30'],
         "date_cooked": request.form['date_cooked'],
         "posted_by": user_data.first_name,
         "user_id": user_data.id

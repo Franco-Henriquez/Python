@@ -17,6 +17,9 @@ class Recipe:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
 
+        # set to none for now - read class associations for this
+        self.owner = []
+
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM recipes;"
@@ -49,6 +52,9 @@ class Recipe:
             is_valid = False
         if len(data['instructions']) < 1:
             flash("Instructions cannot be blank","add_recipe")
+            is_valid = False
+        if "under_30" not in data:
+            flash("Does your recipe take less than 30 minutes to finish?","add_recipe")
             is_valid = False
         # if user['password'] != user['confirm']:
         #     flash("Passwords don't match.","add_recipe")
