@@ -22,7 +22,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Under</th>
+                    <th>Under 30 Min</th>
                     <th>Posted By</th>
                     <th>Actions</th>
                 </tr>
@@ -31,16 +31,16 @@
                 {% for recipe in recipes %}
                 <tr class="table-light">
                     <th>{{recipe.name}}</th>
-                    <th>{{recipe.under}}</th>
-                    <th>{{recipe.posted_by}}</th>
+                    <th>{{recipe.under_30}}</th>
+                    <th>{{recipe.owner.first_name}}</th>
                     <!-- this is a temporary placeholder for
                         the IF statement.
                         Must change this to compare by ID and not by name, for accuracy.
                     -->
-                    <th>{% if recipe.posted_by == user.first_name %}
-                        <a href="">View Recipe</a> | <a href="">Edit</a> | <a href="">Delete</a>
+                    <th>{% if recipe.owner.id == user.id %}
+                        <a href="./recipes/{{recipe.id}}">View Recipe</a> | <a href="./recipes/edit/{{recipe.id}}">Edit</a> | <a href="/delete_recipe/{{recipe.id}}">Delete</a>
                         {% else %}
-                        <a href="">View Recipe</a>
+                        <a href="./recipes/{{recipe.id}}">View Recipe</a>
                         {% endif %}
                     </th>
                 </tr>

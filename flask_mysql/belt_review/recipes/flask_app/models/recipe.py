@@ -10,7 +10,7 @@ class Recipe:
     def __init__(self,data):
         self.id = data['id']
         self.name = data['name']
-        self.under = data['under']
+        self.under_30 = data['under_30']
         self.description = data['description']
         self.instructions = data['instructions']
         self.date_cooked = data['date_cooked']
@@ -79,8 +79,29 @@ class Recipe:
     @classmethod
     def add_recipe(cls,data):
         query = """
-                INSERT INTO recipes (name,under,description,instructions,date_cooked,user_id)
-                VALUES (%(name)s,%(under)s,%(description)s,%(instructions)s,%(date_cooked)s,%(user_id)s)
+                INSERT INTO recipes (name,under_30,description,instructions,date_cooked,user_id)
+                VALUES (%(name)s,%(under_30)s,%(description)s,%(instructions)s,%(date_cooked)s,%(user_id)s)
+                """
+        return connectToMySQL(cls.db).query_db(query,data)
+    
+    @classmethod
+    def edit_recipe(cls,data):
+        query = """
+                UPDATE recipes
+                SET name = %(name)s,
+                under_30 = %(under_30)s,
+                description = %(description)s,
+                instructions = %(instructions)s,
+                date_cooked = %(date_cooked)s
+                WHERE id = %(id)s;
+                """
+        return connectToMySQL(cls.db).query_db(query,data)
+    
+    @classmethod
+    def delete_recipe(cls,data):
+        query = """
+                DELETE FROM recipes
+                WHERE id = %(id)s;
                 """
         return connectToMySQL(cls.db).query_db(query,data)
     
@@ -108,3 +129,4 @@ class Recipe:
         #     flash("Passwords don't match.","add_recipe")
         #     is_valid = False
         return is_valid
+    
